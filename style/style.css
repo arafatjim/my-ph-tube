@@ -9,9 +9,8 @@
           justify-content: space-between;
           align-items: center;
           padding: 0 20px;
-          background-color: #fff;
+          /* background-color: #fff; */
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          
           width: 85%;
           z-index: 1000;
           margin: 0 auto;
@@ -29,7 +28,7 @@
         display: grid;
         grid-template-columns:  1fr 1fr;
         grid-gap: 20px;
-        background: #7efff5;
+        /* background: #227093; */
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -70,7 +69,7 @@
           
     }
     #video-container{
-        background: #7efff5;
+        background: #f5f6fa;
         display: flex;
         flex-direction: column;
         justify-content: center;
