@@ -44,17 +44,52 @@ const displayVideos = (videos) => {
     const cards=document.createElement("div");
     cards.classList="card";
     cards.innerHTML=`
-    <div class="card border-2 gap-6 bg-[#dfe4ea] height-[250px]" style="">
-    <img src="${item.thumbnail}" class="card-img-top height-[150px] rounded-md" alt="...">
-    <div class="card-body " alt="..."">
-    <h5 class="card-title text-[#3d3d3d] text-center font-bold text-lg
-    ">${item.title}</h5>
-    <p class="card-text">${item.description}</p>
+    <div class="card card-compact">
+  <figure>
+    <img class="card-image"
+      src="${item.thumbnail}"
+      alt="Videos" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">
+    ${item.title}
+      <div class="badge badge-secondary">view 100</div>
+    </h2>
+    <p>${item.description}</p>
+    <div class="card-actions justify-end">
+      <div class="badge badge-outline">Fashion</div>
+      <div class="badge badge-outline">Products</div>
     </div>
-    </div>
+  </div>
+</div>
     `;
     videoContainer.appendChild(cards);
 
   })
 }
 loadVideos();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <div class="card border-2 gap-6 bg-[#dfe4ea] height-[250px]" style="">
+// <img src="${item.thumbnail}" class="card-img-top height-[150px] rounded-md" alt="...">
+// <div class="card-body " alt="..."">
+// <h5 class="card-title text-[#3d3d3d] text-center font-bold text-lg
+// ">${item.title}</h5>
+// <p class="card-text"></p>
+// </div>
+// </div>

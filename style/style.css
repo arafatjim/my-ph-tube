@@ -1,83 +1,22 @@
-
-
-@media screen and (max-width: 1200px) {
-    .navbar .search {
-        display: none;
-    }
-    .navbar{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 20px;
-          /* background-color: #fff; */
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          width: 85%;
-          z-index: 1000;
-          margin: 0 auto;
-    }
-    .videoList{
-          
-          width: 100%;
-          height: 100%;
-          margin: 0 auto;
-          padding-top: 6%;
-          
-          
-    }
-    #video-container{
-        display: grid;
-        grid-template-columns:  1fr 1fr;
-        grid-gap: 20px;
-        /* background: #227093; */
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 85%;
-        height: 100%;
-        margin: 0 auto;
-        padding: 5% auto;
-
-    }
-          
+.videos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin: 0 auto;
+    gap: 1rem;
+    padding: 1rem;
+    height: full;
+    background-color: #12CBC4;
 }
-
-
-
-@media screen and (max-width: 600px) {
-    .navbar .search {
-        display: none;
-    }
-    .navbar{
-          display: grid;
-            grid-template-columns: 1fr 1fr;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 20px;
-          
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        
-          width: 100%;
-          z-index: 1000;
-    }
-    .videoList{
-          width: 100%;
-          height: 100%;
-          margin: 0 auto;
-          padding-top: 10%;
-
-          
-          
-    }
-    #video-container{
-        background: #f5f6fa;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        padding-top: 10%;
-
-    }
+.card{
+    border-radius: 10px;
+    background: #f5f6fa;
+    
+}
+.card-image{
+    height: 200px;
+    border: none;
+    border-radius: 1em;
+    width: 100%;
+    object-fit: cover;
+    padding: 1em;
 }
