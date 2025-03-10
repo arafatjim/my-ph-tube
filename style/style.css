@@ -20,3 +20,21 @@
     object-fit: cover;
     padding: 1em;
 }
+.verified-img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    
+}
+.avatar{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.profile-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}

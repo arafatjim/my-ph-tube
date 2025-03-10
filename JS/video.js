@@ -39,8 +39,10 @@ const loadVideos=async(videos) => {
 
 const displayVideos = (videos) => {
   const videoContainer=document.getElementById("video-container");
+  
   videoContainer.innerHTML='';
   videos.forEach((item)=>{
+    const verifiedIcon = item.authors[0].verified ? './assets/badge.png' : '';
     const cards=document.createElement("div");
     cards.classList="card";
     cards.innerHTML=`
@@ -53,16 +55,32 @@ const displayVideos = (videos) => {
   <div class="card-body">
     <h2 class="card-title">
     ${item.title}
-      <div class="badge badge-secondary">view 100</div>
+      
     </h2>
-    <p>${item.description}</p>
-    <div class="card-actions justify-end">
-      <div class="badge badge-outline">Fashion</div>
-      <div class="badge badge-outline">Products</div>
+    <div class="card-meta flex gap-2">
+      <img class="avatar profile-avatar avatar-sm " src="${item.authors[0].profile_picture}" alt="." />
+      <div class="flex gap-4 pt-1">
+      <p class="font-bold pt-2 text-xl">${item.authors[0].profile_name}</p>
+       ${verifiedIcon ? `<img class="avatar avatar-sm" src="${verifiedIcon}" alt="Verified" />` : ''}</div>
+      
+    </div>
+    <div>
+        <p>${item.description}</p> 
+    </div>
+    <div class="card-actions justify-start font-bold">
+      
+      <div class="badge text-[#57606f] bg-[#EAB543] w-4/12 h-[2em]">${item.others.views}</div>
     </div>
   </div>
 </div>
     `;
+    // if(videos.authors[0].verified===true){
+    //   videos.authors[0].verified=
+    //   `<img class="avatar avatar-sm" src="${item.authors[0].verified}" alt=" " />`;
+    // }
+    // else{
+    //   videos.authors[0].verified='';
+    // }
     videoContainer.appendChild(cards);
 
   })
