@@ -1,15 +1,30 @@
-.navbar{
-    background-color: #218c74;
-    
+header{
+    width: 92%;
+    margin: 0 auto;
+    /* background: #16a085; */
+    background:  linear-gradient(
+        to right,#15715f,rgb(43, 101, 71)
+      );
+    margin-bottom: 4em;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+  
 }
 .videos{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     margin: 0 auto;
     gap: 1rem;
-    padding: 1rem;
+    padding: 2rem;
     height: full;
-    background-color: #218c74;
+    background-color: #16a085;
+    border: none;
+    border-radius: 10px;
+    
    
 }
 .card{
@@ -45,7 +60,7 @@
 }
 
 @media screen and (max-width: 768px){
-    .navbar .search{
+    .navbar{
         display: none;
     }
     
