@@ -53,15 +53,15 @@ const displayVideos = (videos) => {
       alt="Videos" />
   </figure>
   <div class="card-body">
-    <h2 class="card-title">
+    <h2 class="card-title text-[#3742fa] font-bold text-xl">
     ${item.title}
       
     </h2>
     <div class="card-meta flex gap-2">
-      <img class="avatar profile-avatar avatar-sm " src="${item.authors[0].profile_picture}" alt="." />
-      <div class="flex gap-4 pt-1">
-      <p class="font-bold pt-2 text-xl">${item.authors[0].profile_name}</p>
-       ${verifiedIcon ? `<img class="avatar avatar-sm" src="${verifiedIcon}" alt="Verified" />` : ''}</div>
+      <img class="avatar profile-avatar avatar-sm border-4 border-[#a4b0be] " src="${item.authors[0].profile_picture}" alt="." />
+      <div class="flex gap-4 pt-1 align-center">
+      <p class="font-bold pt-2 text-lg text-[#009432] ">${item.authors[0].profile_name}</p>
+       ${verifiedIcon ? `<img class="avatar avatar-sm mt-[1em]" src="${verifiedIcon}" alt="Verified" />` : ''}</div>
       
     </div>
     <div>
@@ -69,18 +69,12 @@ const displayVideos = (videos) => {
     </div>
     <div class="card-actions justify-start font-bold">
       
-      <div class="badge text-[#57606f] bg-[#EAB543] w-4/12 h-[2em]">${item.others.views}</div>
+      <div class="badge text-[#57606f] bg-[#70a1ff] w-4/12 h-[2em]">${item.others.views}</div>
     </div>
   </div>
 </div>
     `;
-    // if(videos.authors[0].verified===true){
-    //   videos.authors[0].verified=
-    //   `<img class="avatar avatar-sm" src="${item.authors[0].verified}" alt=" " />`;
-    // }
-    // else{
-    //   videos.authors[0].verified='';
-    // }
+    
     videoContainer.appendChild(cards);
 
   })
