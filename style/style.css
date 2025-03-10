@@ -1,3 +1,4 @@
+
 .videos{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -38,4 +39,11 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+@media screen and (max-width: 768px){
+    .navbar .search{
+        display: none;
+    }
+    
 }
