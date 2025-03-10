@@ -60,7 +60,7 @@ header{
 }
 
 @media screen and (max-width: 768px){
-    .navbar{
+    .navbar .search{
         display: none;
     }
     
