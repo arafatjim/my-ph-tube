@@ -1,5 +1,18 @@
-let categories = [];
+// convert time to hours, minutes and seconds
+function getTime(seconds){
+  
+ 
+    var hours=Math.floor(seconds/3600);
+    var minutes=Math.floor((seconds%3600)/60);
+    var remainingSeconds=seconds%60;
+    var days=parseInt(hours/24);
+    return days+" day "+hours+" hour "+minutes+" minute "+remainingSeconds+" second";
+  
+  
+  
+}
 
+//load categories
 const loadCategories = async () => {
   try {
     const response = await fetch("https://openapi.programming-hero.com/api/phero-tube/categories");
@@ -11,18 +24,21 @@ const loadCategories = async () => {
   }
 };
 
+
+
 const displayCategories = (categories) => {
   const categoryContainer = document.getElementById("category");
   categoryContainer.innerHTML = ''; // Clear any existing content
   categories.forEach((item) => {
-    const button = document.createElement("button");
-    button.classList = "btn";
-    button.innerText = item.category;
-    categoryContainer.appendChild(button);
+    const buttoncontainer=document.createElement("div");
+    buttoncontainer.innerHTML=
+    `<button onclick="loadCategoryVideo(${item.category_id})" class="btn btn-info">
+      ${item.category}
+    </button>
+    `
+    categoryContainer.appendChild(buttoncontainer);
   });
 };
-loadCategories();
-
 
 
 const loadVideos=async(videos) => {
@@ -37,39 +53,60 @@ const loadVideos=async(videos) => {
   }
 }
 
+const loadCategoryVideo =async (id) =>{
+  try{
+    const response=await fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`);
+    const data=await response.json();
+    videos=data.videos;
+    displayVideos(data.category);
+    
+  }
+  catch(error){
+    console.log(error);
+  }
+};
+
+
 const displayVideos = (videos) => {
   const videoContainer=document.getElementById("video-container");
   
   videoContainer.innerHTML='';
-  videos.forEach((item)=>{
-    const verifiedIcon = item.authors[0].verified ? './assets/badge.png' : '';
+  videos.forEach((video)=>{
+    const verifiedIcon = video.authors[0].verified ? './assets/badge.png' : '';
     const cards=document.createElement("div");
     cards.classList="card";
     cards.innerHTML=`
     <div class="card card-compact">
-  <figure>
+  <figure class="relative">
     <img class="card-image"
-      src="${item.thumbnail}"
+      src="${video.thumbnail}"
       alt="Videos" />
+
+         ${
+          video.others.posted_date?.length === 0 ? '' 
+          : `<span class="date" alt="." />${getTime(video.others.posted_date)}</span>`
+         }
+
+    
+      
   </figure>
   <div class="card-body">
     <h2 class="card-title text-[#3742fa] font-bold text-xl">
-    ${item.title}
+    ${video.title}
       
     </h2>
-    <div class="card-meta flex gap-2">
-      <img class="avatar profile-avatar avatar-sm border-4 border-[#a4b0be] " src="${item.authors[0].profile_picture}" alt="." />
-      <div class="flex gap-4 pt-1 align-center">
-      <p class="font-bold pt-2 text-lg text-[#009432] ">${item.authors[0].profile_name}</p>
-       ${verifiedIcon ? `<img class="avatar avatar-sm mt-[1em]" src="${verifiedIcon}" alt="Verified" />` : ''}</div>
+    <div class="card-meta flex gap-2 items-center  align-center">
+      <img class="avatar profile-avatar avatar-sm border-4 border-[#a4b0be] " src="${video.authors[0].profile_picture}" alt="." />
+      <div class="flex gap-4 pt-1 items-center">
+      <p class="font-bold pt-2 text-lg text-[#009432]">${video.authors[0].profile_name}</p>
+       ${verifiedIcon ? `<img class="avatar avatar-sm mt-[1em]" src="${verifiedIcon}" alt="Verified" />` : ''}
+    </div>
       
     </div>
-    <div>
-        <p>${item.description}</p> 
-    </div>
+    
     <div class="card-actions justify-start font-bold">
       
-      <div class="badge text-[#57606f] bg-[#70a1ff] w-4/12 h-[2em]">${item.others.views}</div>
+      <div class="badge text-[#1e272e] bg-[#d1d8e0] w-4/12 h-[2em] border-2 border-[#0fbcf9]">${video.others.views}</div>
     </div>
   </div>
 </div>
@@ -79,7 +116,13 @@ const displayVideos = (videos) => {
 
   })
 }
+
+
+
+
+loadCategories();
 loadVideos();
+
 
 
 
