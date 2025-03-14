@@ -69,8 +69,27 @@ const loadCategoryVideo =async (id) =>{
 
 const displayVideos = (videos) => {
   const videoContainer=document.getElementById("video-container");
-  
+  console.log(videoContainer);
   videoContainer.innerHTML='';
+  
+  if(videos.length == 0 ){
+    videoContainer.classList.remove("grid");
+    videoContainer.innerHTML=`
+
+  <div class="min-h-screen flex flex-col gap-4 items-center justify-center border-2 font-bold text-center">
+    <img src="./assets/Icon.png" alt="">
+    <h3 class="text-4xl" >Ooops! Sorry There is no <br> content here</h3>
+    
+  </div>
+  
+
+    `;
+    return;
+  }
+  else{
+      videoContainer.classList.add("grid");
+  }
+  
   videos.forEach((video)=>{
     const verifiedIcon = video.authors[0].verified ? './assets/badge.png' : '';
     const cards=document.createElement("div");
