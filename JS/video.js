@@ -32,7 +32,7 @@ const displayCategories = (categories) => {
   categories.forEach((item) => {
     const buttoncontainer=document.createElement("div");
     buttoncontainer.innerHTML=
-    `<button onclick="loadCategoryVideo(${item.category_id})" class="btn btn-info">
+    `<button id="btn-${item.category_id}" onclick="loadCategoryVideo(${item.category_id})" class="btn">
       ${item.category}
     </button>
     `
@@ -53,23 +53,40 @@ const loadVideos=async(videos) => {
   }
 }
 
-const loadCategoryVideo =async (id) =>{
-  try{
-    const response=await fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`);
-    const data=await response.json();
-    videos=data.videos;
-    displayVideos(data.category);
+const loadDetails=(videoId) =>{
+  console.log(videoId);
+}
+
+const loadCategoryVideo = (id) =>{
+  // try{
+  //   const response=await fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`);
+  //   const data=await response.json();
+  //   videos=data.videos;
+   
+  //   displayVideos(data.category);
     
-  }
-  catch(error){
-    console.log(error);
-  }
+  // }
+  // catch(error){
+  //   console.log(error);
+  // }
+  
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+  .then((response) =>response.json())
+  .then((data)=>{
+    const activeBtn=document.getElementById(`btn-${id}`);
+    activeBtn.classList.add('active');
+    console.log(activeBtn);
+    displayVideos(data.category);
+  })
+  
+  .catch((error) =>console.log(error));
+  
 };
 
 
 const displayVideos = (videos) => {
   const videoContainer=document.getElementById("video-container");
-  console.log(videoContainer);
+  // console.log(videoContainer);
   videoContainer.innerHTML='';
   
   if(videos.length == 0 ){
@@ -77,7 +94,7 @@ const displayVideos = (videos) => {
     videoContainer.innerHTML=`
 
   <div class="min-h-screen flex flex-col gap-4 items-center justify-center border-2 font-bold text-center">
-    <img src="./assets/Icon.png" alt="">
+    <img src="./assets/Icon.png" alt="Ooops! Sorry There is no <br> content here">
     <h3 class="text-4xl" >Ooops! Sorry There is no <br> content here</h3>
     
   </div>
@@ -126,6 +143,7 @@ const displayVideos = (videos) => {
     <div class="card-actions justify-start font-bold">
       
       <div class="badge text-[#1e272e] bg-[#d1d8e0] w-4/12 h-[2em] border-2 border-[#0fbcf9]">${video.others.views}</div>
+      <button onclick="loadDetails('${videos.video_id}')" class="btn btn-sm btn-error">Show Details</button>
     </div>
   </div>
 </div>
@@ -135,8 +153,6 @@ const displayVideos = (videos) => {
 
   })
 }
-
-
 
 
 loadCategories();
