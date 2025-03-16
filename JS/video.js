@@ -188,7 +188,7 @@ document.getElementById("search-input").addEventListener("keyup",(e)=>{
 loadCategories();
 loadVideos();
 
-
+console.log("netlify deploy");
 
 
 
