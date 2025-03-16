@@ -75,14 +75,14 @@ const displayDetails=(video)=>{
   console.log(video);
   const modalDetails=document.getElementById("modal-content");
   modalDetails.innerHTML=`
-    <img src=${video.thumbnail}/>
+    <img class="card-image" src=${video.thumbnail}/>
     <p class="text-2xl font-bold py-2 text-[#3742fa]">${video.title} </p>
     <div class="flex justify-items-center place-items-center gap-4 text-2xl font-bold py-2 text-[#009432]">
         <img class="w-[100px] h-[100px] rounded-full" src=${video.authors[0].profile_picture} />
         
         <p class="text-center ">${video.authors[0].profile_name}</p>
     </div>
-    <p> ${video.description} </p>
+    <p class="text-sm "> ${video.description} </p>
   `
   //way 1
   // document.getElementById("customModal").showModal();
