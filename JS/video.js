@@ -53,22 +53,46 @@ const loadVideos=async(videos) => {
   }
 }
 
-const loadDetails=(videoId) =>{
-  console.log(videoId);
+const loadDetails=async(videoId) =>{
+  const loader = document.getElementById('loader');
+  loader.style.display = 'block';
+  try{
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      displayDetails(data.video);
+      // You can add code here to display video details
+    })
+  }
+     catch (error) {
+      console.log(error);
+    }
+    
+  
 }
 
+const displayDetails=(video)=>{
+  console.log(video);
+  const modalDetails=document.getElementById("modal-content");
+  modalDetails.innerHTML=`
+    <img src=${video.thumbnail}/>
+    <p class="text-2xl font-bold py-2 text-[#3742fa]">${video.title} </p>
+    <div class="flex justify-items-center place-items-center gap-4 text-2xl font-bold py-2 text-[#009432]">
+        <img class="w-[100px] h-[100px] rounded-full" src=${video.authors[0].profile_picture} />
+        
+        <p class="text-center ">${video.authors[0].profile_name}</p>
+    </div>
+    <p> ${video.description} </p>
+  `
+  //way 1
+  // document.getElementById("customModal").showModal();
+  // way2
+  document.getElementById("showModalData").click();
+}
+
+
 const loadCategoryVideo = (id) =>{
-  // try{
-  //   const response=await fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`);
-  //   const data=await response.json();
-  //   videos=data.videos;
-   
-  //   displayVideos(data.category);
-    
-  // }
-  // catch(error){
-  //   console.log(error);
-  // }
+ 
   
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
   .then((response) =>response.json())
@@ -143,7 +167,7 @@ const displayVideos = (videos) => {
     <div class="card-actions justify-start font-bold">
       
       <div class="badge text-[#1e272e] bg-[#d1d8e0] w-4/12 h-[2em] border-2 border-[#0fbcf9]">${video.others.views}</div>
-      <button onclick="loadDetails('${videos.video_id}')" class="btn btn-sm btn-error">Show Details</button>
+      <button id="loader" onclick="loadDetails('${video.video_id}')" class="btn btn-sm btn-error">Show Details</button>
     </div>
   </div>
 </div>
