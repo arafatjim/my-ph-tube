@@ -32,7 +32,7 @@ const displayCategories = (categories) => {
   categories.forEach((item) => {
     const buttoncontainer=document.createElement("div");
     buttoncontainer.innerHTML=
-    `<button id="btn-${item.category_id}" onclick="loadCategoryVideo(${item.category_id})" class="btn">
+    `<button id="btn-${item.category_id}" onclick="loadCategoryVideo(${item.category_id})" class="btn btn-error ">
       ${item.category}
     </button>
     `
@@ -117,7 +117,7 @@ const displayVideos = (videos) => {
     videoContainer.classList.remove("grid");
     videoContainer.innerHTML=`
 
-  <div class="min-h-screen flex flex-col gap-4 items-center justify-center border-2 font-bold text-center">
+  <div class="min-h-screen py-6 mx-2 flex flex-col gap-4 items-center justify-center border-4 rounded-2xl border-[red] bg-[#ff7f50] font-bold text-center">
     <img src="./assets/Icon.png" alt="Ooops! Sorry There is no <br> content here">
     <h3 class="text-4xl" >Ooops! Sorry There is no <br> content here</h3>
     
@@ -151,14 +151,14 @@ const displayVideos = (videos) => {
       
   </figure>
   <div class="card-body">
-    <h2 class="card-title text-[#3742fa] font-bold text-xl">
+    <h2 class="card-title text-[#222f3e] font-bold text-xl">
     ${video.title}
       
     </h2>
     <div class="card-meta flex gap-2 items-center  align-center">
       <img class="avatar profile-avatar avatar-sm border-4 border-[#a4b0be] " src="${video.authors[0].profile_picture}" alt="." />
       <div class="flex gap-4 pt-1 items-center">
-      <p class="font-bold pt-2 text-lg text-[#009432]">${video.authors[0].profile_name}</p>
+      <p class="font-bold pt-2 text-lg text-[#130f40]">${video.authors[0].profile_name}</p>
        ${verifiedIcon ? `<img class="avatar avatar-sm mt-[1em]" src="${verifiedIcon}" alt="Verified" />` : ''}
     </div>
       
@@ -199,11 +199,3 @@ loadVideos();
 
 
 
-// <div class="card border-2 gap-6 bg-[#dfe4ea] height-[250px]" style="">
-// <img src="${item.thumbnail}" class="card-img-top height-[150px] rounded-md" alt="...">
-// <div class="card-body " alt="..."">
-// <h5 class="card-title text-[#3d3d3d] text-center font-bold text-lg
-// ">${item.title}</h5>
-// <p class="card-text"></p>
-// </div>
-// </div>

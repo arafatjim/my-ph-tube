@@ -1,7 +1,7 @@
 header{
     width: 92%;
     margin: 0 auto;
-    background:  #3498db;
+    background:  #009432;
     margin-bottom: 4em;
     position: fixed;
     z-index: 100;
@@ -27,7 +27,7 @@ header{
 }
 .card{
     border-radius: 10px;
-    background: #ced6e0;
+    background: #2ed573;
     
 }
 .card-image{
@@ -41,8 +41,6 @@ header{
 .verified-img{
     width: 20px;
     height: 20px;
-
-    
 }
 .avatar{
     width: 20px;
