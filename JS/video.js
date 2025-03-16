@@ -35,15 +35,17 @@ const displayCategories = (categories) => {
     `<button id="btn-${item.category_id}" onclick="loadCategoryVideo(${item.category_id})" class="btn btn-error ">
       ${item.category}
     </button>
+    
     `
+    
     categoryContainer.appendChild(buttoncontainer);
   });
 };
 
 
-const loadVideos=async(videos) => {
+const loadVideos=async(searchText= "") => {
   try{
-    const response=await fetch("https://openapi.programming-hero.com/api/phero-tube/videos");
+    const response=await fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`);
     const data=await response.json();
     videos=data.videos;
     displayVideos(videos);
@@ -177,6 +179,10 @@ const displayVideos = (videos) => {
 
   })
 }
+
+document.getElementById("search-input").addEventListener("keyup",(e)=>{
+  loadVideos(e.target.value);
+});
 
 
 loadCategories();
